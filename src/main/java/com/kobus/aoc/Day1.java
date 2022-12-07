@@ -1,12 +1,12 @@
 package com.kobus.aoc;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 /**
- * Advent of Code 2021 Solutions
- * Day 1: Sonar Sweep
+ * Advent of Code 2022 Solutions
+ * Day 1: Calorie Counting
  *
  * @author Kobus Pretorius
  */
@@ -24,22 +24,26 @@ public class Day1 extends AoCRunnable {
     @Override
     public String part1() {
         int answer;
-        var calories = new HashMap<Integer, Integer>();
-        int i = 0;
-        for (var line : input) {
-            if (line.isEmpty()) {
-                i++;
-                continue;
-            }
-            calories.put(i, calories.getOrDefault(i, 0) + Integer.parseInt(line, 10));
-        }
-        answer = calories.values().stream().mapToInt(Integer::intValue).max().getAsInt();
+        var calories = getGroupedCalories();
+        answer = calories.values().stream()
+                .mapToInt(Integer::intValue)
+                .max()
+                .getAsInt();
         return "" + answer;
     }
 
     @Override
     public String part2() {
-        int answer;
+        var calories = getGroupedCalories();
+        int answer = calories.values().stream()
+                .sorted(Comparator.reverseOrder())
+                .mapToInt(Integer::intValue)
+                .limit(3)
+                .sum();
+        return "" + answer;
+    }
+
+    private HashMap<Integer, Integer> getGroupedCalories() {
         var calories = new HashMap<Integer, Integer>();
         int i = 0;
         for (var line : input) {
@@ -49,9 +53,6 @@ public class Day1 extends AoCRunnable {
             }
             calories.put(i, calories.getOrDefault(i, 0) + Integer.parseInt(line, 10));
         }
-        var l = calories.values().stream().mapToInt(Integer::intValue).sorted().boxed().collect(Collectors.toList());
-        var len = l.size();
-        answer = l.get(len-3) + l.get(len-2) + l.get(len-1);
-        return "" + answer;
+        return calories;
     }
 }

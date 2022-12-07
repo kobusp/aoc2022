@@ -18,7 +18,7 @@ public class AoC {
         System.out.println("╔═══════════════════ AoC 2022 ~ Batch Execution ═══════════════════╗");
         System.out.println("║ Day  Part           Answer" + String.format("%20s", "Ave. of " + NUM_EXECUTIONS + " Runs") + String.format("%18s", "(Worst)") + " ║");
         var allDays = new ArrayList<AoCRunnable>();
-        allDays.add(new Day0("0"));
+        allDays.add(new Day1("1"));
 
         for (var day : allDays) {
             day.run(false, NUM_EXECUTIONS);

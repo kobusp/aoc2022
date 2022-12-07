@@ -185,4 +185,40 @@ public abstract class AoCRunnable {
         Arrays.sort(charArray);
         return new String(charArray);
     }
+
+//    class Stack<T> {
+//        List<T> items;
+//
+//        public Stack(List<T> items) {
+//            this.items = items;
+//        }
+//
+//        public void push(T item) {
+//            List<T> newItems = new ArrayList<>();
+//            newItems.add(item);
+//            newItems.addAll(items);
+//            items = newItems;
+//        }
+//
+//        public T pop() {
+//            return items.remove(0);
+//        }
+//
+//        public void reverse() {
+//            List<T> newItems = new ArrayList<>();
+//            for (int i = 0; i < items.size(); i++) {
+//                newItems.add(items.get(items.size() - i - 1));
+//            }
+//            items = newItems;
+//        }
+//
+//        public int size() {
+//            return items.size();
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return ("" + items).replaceAll(" ", "");
+//        }
+//    }
 }
